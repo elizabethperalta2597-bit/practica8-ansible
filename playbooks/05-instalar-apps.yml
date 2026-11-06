@@ -1,0 +1,20 @@
+---
+- name: Instalar cowsay y htop
+  hosts: servidores
+  become: true
+  tasks:
+    - name: Instalar cowsay y htop
+      ansible.builtin.apt:
+        name:
+          - cowsay
+          - htop
+        state: present
+
+    - name: Comprobar que cowsay funciona
+      ansible.builtin.command: /usr/games/cowsay "Hola desde {{ inventory_hostname }}"
+      register: resultado_cowsay
+      changed_when: false
+
+    - name: Mostrar el resultado de cowsay
+      ansible.builtin.debug:
+        var: resultado_cowsay.stdout_lines

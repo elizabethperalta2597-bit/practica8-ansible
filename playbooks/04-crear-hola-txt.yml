@@ -1,0 +1,12 @@
+---
+- name: Crear el archivo hola.txt en la carpeta app
+  hosts: servidores
+  become: true
+  tasks:
+    - name: Crear hola.txt con un mensaje
+      ansible.builtin.copy:
+        dest: /home/itla/app/hola.txt
+        content: "Hola desde Ansible, servidor {{ inventory_hostname }}\n"
+        owner: itla
+        group: itla
+        mode: "0644"

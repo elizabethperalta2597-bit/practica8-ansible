@@ -1,0 +1,7 @@
+---
+# Ejecuta todos los playbooks en orden
+- import_playbook: 01-actualizar-apt.yml
+- import_playbook: 02-crear-usuario-itla.yml
+- import_playbook: 03-crear-carpeta-app.yml
+- import_playbook: 04-crear-hola-txt.yml
+- import_playbook: 05-instalar-apps.yml

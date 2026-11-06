@@ -1,0 +1,8 @@
+---
+- name: Actualizar la caché de APT
+  hosts: servidores
+  become: true
+  tasks:
+    - name: Actualizar caché de APT
+      ansible.builtin.apt:
+        update_cache: true

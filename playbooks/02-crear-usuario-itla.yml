@@ -1,0 +1,11 @@
+---
+- name: Crear el usuario itla
+  hosts: servidores
+  become: true
+  tasks:
+    - name: Crear el usuario itla con su carpeta personal
+      ansible.builtin.user:
+        name: itla
+        shell: /bin/bash
+        create_home: true
+        state: present

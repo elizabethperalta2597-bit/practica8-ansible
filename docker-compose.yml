@@ -1,0 +1,63 @@
+# 5 servidores Ubuntu (contenedores) creados con la misma imagen
+x-servidor: &servidor
+  build: .
+  image: ubuntu-ssh-ansible
+  restart: unless-stopped
+
+services:
+  servidor1:
+    <<: *servidor
+    container_name: servidor1
+    hostname: servidor1
+    networks:
+      red_ansible:
+        ipv4_address: 172.28.0.11
+    ports:
+      - "2201:22"
+
+  servidor2:
+    <<: *servidor
+    container_name: servidor2
+    hostname: servidor2
+    networks:
+      red_ansible:
+        ipv4_address: 172.28.0.12
+    ports:
+      - "2202:22"
+
+  servidor3:
+    <<: *servidor
+    container_name: servidor3
+    hostname: servidor3
+    networks:
+      red_ansible:
+        ipv4_address: 172.28.0.13
+    ports:
+      - "2203:22"
+
+  servidor4:
+    <<: *servidor
+    container_name: servidor4
+    hostname: servidor4
+    networks:
+      red_ansible:
+        ipv4_address: 172.28.0.14
+    ports:
+      - "2204:22"
+
+  servidor5:
+    <<: *servidor
+    container_name: servidor5
+    hostname: servidor5
+    networks:
+      red_ansible:
+        ipv4_address: 172.28.0.15
+    ports:
+      - "2205:22"
+
+networks:
+  red_ansible:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
